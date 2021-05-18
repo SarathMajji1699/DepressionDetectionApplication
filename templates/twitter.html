@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Depression Detection</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../static/css/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/font-awesome/css/font-awesome.css">
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/twitter.css') }}"> -->
+  <!-- <link href="../static/css/twitter.css" rel="stylesheet"> -->
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  /* background-size: cover;
+  background-image: url("https://image.freepik.com/free-photo/bunch-twitter-icons-logos-3d-background_125322-9.jpg"); */
+}
+
+.box {
+  margin-top: 10%;
+  margin-right: 20px;
+  /* width: 350px; */
+  height: 370px;
+  background: #000;
+  color: #fff;
+  top: 15%;
+  position: static;
+  box-sizing: border-box;
+  padding: 20px 10px;
+  opacity: 75%;
+  /* float:right; */
+  border-radius: 25px;
+  border: 3px solid white;
+  border: 5px solid #1DA1F2;
+}
+h1 {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.box input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 20px;
+  width: 80%;
+  color: #fff;
+  font-size: 16px;
+}
+
+/* .box input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 180px;
+    background: #fb2525;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    border: 3px solid white;
+    font-weight: bold;
+}
+.box input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: green;
+    color: #fff;
+} */
+
+h1 {
+  font-size: 23px;
+}
+
+.twitter-logo {
+  height: 36px;
+  width: 36px;
+  fill: #fff;
+  margin: 20px auto;
+}
+
+.form-element {
+  /* display: flex; */
+  flex-direction: column-reverse;
+  margin-top: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+.form-element label {
+  color: rgb(136, 153, 166);
+}
+
+.form-element input {
+  padding: 2px 0 5px 0;
+  background: transparent;
+  width: 100%;
+  font-size: 19px;
+  color: #fff;
+  border-bottom: 2px solid gray; /* borderdaki radius'u yaparsın sen */
+}
+
+.form-element input:focus {
+  outline: none;
+  border-bottom-color: var(--blue);
+}
+
+input:focus + div label {
+  color: var(--white);
+}
+
+.form-element .btn {
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 19.6px;
+  padding: 15px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid white;
+}
+
+.form-element .btn.btn-blue {
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.form-element .btn.btn-blue:hover {
+  background-color: var(--blue-hover);
+}
+
+.form-element .btn.btn-blue:active {
+  background-color: var(--blue-pressed);
+}
+
+    .header-border {
+      background-color: red;
+      top: 55px;
+      height: 7px;
+      width: 100%;
+    }
+
+    .box-wrapper {
+      margin: 45% auto
+    }
+
+
+    @media (min-width: 992px) {
+      .header-border {
+        background-color: red;
+        top: 55px;
+        height: 7px;
+        width: 100%;
+      }
+
+      .box-wrapper {
+        margin: 6% auto
+      }
+      .box{
+        width: 800px;
+        height: 450px;
+        border: 5px solid #1DA1F2;
+      }
+      .form-element{
+        margin-top: 40px;
+      }
+      #but {
+        width: 35%;
+      }
+      .form-element .btn{
+        margin-top:  -35px;
+      }
+
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const navbar = document.getElementById("Navbar");
+      if (navbar.classList.contains("show")) {
+        navbar.classList.remove("show");
+      } else {
+        navbar.classList.add("show");
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color: black">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><b>Depression Detection</b></a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" onclick="toggleMenu()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="Navbar">
+        <ul class="ml-auto navbar-nav">
+          &nbsp;
+          <li class="nav-item">
+            <a class="nav-link" href="/select"><span class="fa fa-bars fa-lg"></span> Select</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><span class="fa fa-twitter fa-lg"></span> Twitter User</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/logout"><span class="fa fa-sign-out fa-lg"></span> LogOut
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="fixed-top header-border"></div>
+    <center>
+    <div class="box box-wrapper"><br>
+      <div class="twitter-logo">
+        <svg viewBox="0 0 24 24" class="r-jwli3a r-4qtqp9 r-yyyyoo r-j66t93 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr">
+          <g>
+            <path
+              d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z">
+            </path>
+          </g>
+        </svg>
+      </div>
+      <form action="{{ url_for('tweets')}}" method="post">
+        <br>
+        <div class="form-element">
+          <h1>Enter Twitter Username</h1>
+          <!-- <div>
+      <label for="account_identifier">Username</label>
+      </div> -->
+          <input type="text" name="username" id="account_identifier" class="form-input" style="height: 40px; font-size: 20px; margin-top: 2%;">
+        </div><br><br>
+        <div class="form-element">
+          <button class="btn btn-blue">Analyze</button>
+        </div>
+
+      </form>
+    </div>
+    <a class="btn btn-primary btn-lg" id="but" href="/subscribers" style="width: 75%;border: 5px solid white;opacity: 80%;">Check your Subscribed Twitter Username details</a><br>
+  </center>
+  </div>
+</body>
+
+</html>

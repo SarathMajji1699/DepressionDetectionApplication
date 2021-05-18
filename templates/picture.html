@@ -1,0 +1,137 @@
+<html>
+
+<head>
+  <title>Depression Detection</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../static/css/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/picture.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/picture.css') }}">
+  <link href="../static/css/picture.css" rel="stylesheet" />
+
+  <style>
+    .image-upload {
+      width: 45%;
+      height: 6%;
+      text-align: center;
+      padding: 2px;
+    }
+
+    #btn-predict {
+      width: 45%;
+      height: 6%;
+      text-align: center;
+      padding: 2px;
+    }
+
+    .header-border {
+      background-color: red;
+      top: 55px;
+      height: 7px;
+      width: 100%;
+    }
+
+    #output {
+      width: 80%;
+      border: 2px  solid black;
+    }
+
+    @media (min-width: 992px) {
+      .image-upload {
+        width: 14%;
+        height: 6%;
+        text-align: center;
+        padding: 12px;
+      }
+      .header-border {
+        background-color: red;
+        top: 55px;
+        height: 7px;
+        width: 100%;
+      }
+      #output {
+        width: 50%;
+        border: 2px  solid black;
+      }
+      #btn-predict {
+        width: 14%;
+        height: 6%;
+        text-align: center;
+        padding: 2px;
+      }
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const navbar = document.getElementById("Navbar");
+      if (navbar.classList.contains("show")) {
+        navbar.classList.remove("show");
+      } else {
+        navbar.classList.add("show");
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color: black">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><b>Depression Detection</b></a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" onclick="toggleMenu()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="Navbar">
+        <ul class="ml-auto navbar-nav">
+          &nbsp;
+          <li class="nav-item">
+            <a class="nav-link" href="/select"><span class="fa fa-bars fa-lg"></span> Select</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><span class="fa fa-image fa-lg"></span> Image Upload</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout"><span class="fa fa-sign-out fa-lg"></span> LogOut
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="fixed-top header-border"></div>
+    <center><br><br><br><br><br>
+      <h1 align="center">Welcome to Depression Detection Application</h1><br><br><br><br>
+
+      <form action="{{ url_for('upload') }}" id="upload-file" method="post" enctype="multipart/form-data">
+        <label for="imageUpload" class="image-upload btn btn-primary">
+          Upload Image
+        </label><br><br><br>
+        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg"
+          onchange="loadFile(event)"><br><br><br>
+        <p><img id="output" style="display: none;" /></p><br><br><br>
+
+        <input type="submit" class="btn btn-info btn-lg " id="btn-predict"  value="Analyze Image"
+          style="display: none;"><br><br><br><br><br><br>
+      </form>
+
+    </center>
+  </div>
+
+  <script>
+    var loadFile = function (event) {
+      var image = document.getElementById('output');
+      image.src = URL.createObjectURL(event.target.files[0]);
+      document.getElementById("output").style.display = "block";
+      document.getElementById("btn-predict").style.display = "block";
+    };
+  </script>
+</body>
+
+</html>

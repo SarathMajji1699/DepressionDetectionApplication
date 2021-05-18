@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Password Reset</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/rstyle.css') }}">
+  <link rel="stylesheet" type="text/css" href="..\static\css\rstyle.css">
+  <link rel="stylesheet" href="../static/css/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/font-awesome/css/font-awesome.css">
+  <style>
+  body {
+    /* background-image: url("../static/images/lmback.png"); */
+    /* height: 100vh; */
+  }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .loginbox {
+      width: 300px;
+      background: #000;
+      color: #fff;
+      margin: 30% auto;
+      box-sizing: border-box;
+      border-radius: 10px;
+      padding: 70px 30px;
+      opacity: 80%;
+      border: 5px solid red;
+    }
+
+    .header-border {
+      background-color: red;
+      top: 55px;
+      height: 7px;
+      width: 100%;
+    }
+
+    .display-none {
+      display: none;
+    }
+
+    #Navbar ul {
+      margin-top: 20px;
+    }
+
+    @media (min-width: 992px) {
+      body {
+        /* background-image: url("../static/images/lback.png"); */
+      }
+      .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 2px solid white;
+      }
+
+      .header-border {
+        background-color: red;
+        top: 55px;
+        height: 7px;
+        width: 100%;
+      }
+
+      .display-none {
+        display: block;
+      }
+
+      .loginbox {
+        width: 360px;
+        background: #000;
+        color: #fff;
+        margin-top: 20%;
+        margin-left: 20%;
+        box-sizing: border-box;
+        border-radius: 10px;
+        padding: 70px 30px;
+        opacity: 80%;
+        border: 5px solid red;
+      }
+
+      #Navbar ul {
+        margin-top: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color: black">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><b>Depression Detection</b></a>
+      </div>
+    </nav>
+    <div class="fixed-top header-border"></div>
+    <div class="row">
+      <div class="col-lg-7 col-sm-12">
+        <div class="aimg display-none" style="margin-top: 15%; margin-left: 7%;">
+          <img src="../static/images/ilogin.png" width="85%"
+            height="80%" />
+        </div>
+      </div>
+      <div class="col-lg-5 col-sm-12">
+        <div class="loginbox" style="margin-top: 25%;">
+          <h1>Password Reset</h1><br>
+          <form action="{{ url_for('passreset') }}" method="post">
+            <p>Email
+            <h4> {{email}} </h4>
+            </p>
+            <input type="number" name="vemail" placeholder="Enter OTP sent to your mail" required /><br>
+            <input id="password" type="password" name="password" placeholder="Enter your new password"
+              pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$*-]).{8,}$" required />
+            <div id="message">
+              <h5>Password must contain the following:</h5>
+              <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+              <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+              <p id="number" class="invalid">A <b>number</b></p>
+              <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+              <p id="special" class="invalid">Special character like <b>#?!@$*-</b></p>
+            </div><br>
+            <input id="cpass" type="password" name="cpass" placeholder="Confirm your new password" required /><br><br>
+            <input type="submit" name="reset" value="Reset"><br>
+            <center>
+              <p>Back to Home<a class="bottom" href="{{url_for('userlogin')}}"
+                  style="height: 20px;">&nbsp;&nbsp;&nbsp;Click
+                  Here</a></p>
+            </center>
+          </form>
+          <br>
+          <h1> {{info}} </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/validate.js') }}" type="text/javascript"></script>
+  <script src="..\static\js\validate.js" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  padding: 0;
+  /* height: 100%; */
+  /* background-image: url("https://i.pinimg.com/originals/cf/05/93/cf05936c51dd2075fe0e28d73898786f.jpg"); */
+  background-size: cover;
+  font-family: sans-serif;
+}
+
+header {
+  background: black;
+  color: white;
+  padding: 8px 20px 6px 40px;
+  height: 50px;
+}
+
+header h1 {
+  display: inline;
+  font-family: "Lobster", cursive;
+  font-weight: 400;
+  font-size: 32px;
+  float: left;
+  margin-top: 0px;
+  margin-right: 10px;
+}
+
+.homered {
+  background-color: red;
+  padding: 30px 10px 22px 10px;
+}
+
+.divider {
+  background-color: red;
+  height: 5px;
+}
+
+.homeblack:hover {
+  background-color: #a6ff4d;
+  color: blue;
+  padding: 30px 10px 21px 10px;
+}
+
+.loginbox h1 {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.loginbox p {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+.loginbox input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.loginbox input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"] {
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 5px;
+}
+.loginbox input[type="submit"] {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #fb2525;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+}
+.loginbox input[type="submit"]:hover {
+  cursor: pointer;
+  background: green;
+  color: #000;
+}
+.loginbox a {
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 20px;
+  color: darkgrey;
+}
+
+.loginbox a:hover {
+  color: #ffc107;
+}
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+  display: none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 7px;
+}
+
+#message p {
+  padding: 10px 5px;
+  font-size: 14px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -5px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -5px;
+  content: "✖";
+}
+
+#pmsg {
+  display: none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 2px;
+  margin-top: 2px;
+  border-radius: 7px;
+}
+
+#pmsg p {
+  padding: 10px 5px;
+  font-size: 14px;
+}

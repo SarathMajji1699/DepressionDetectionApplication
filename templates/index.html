@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Depression Detection</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Hind:300" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="../static/css/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../static/css/font-awesome/css/font-awesome.css" />
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link href="../static/css/style.css" rel="stylesheet" /> -->
+  <style>
+    body,
+html {
+  max-width: 100%;
+  scroll-behavior: smooth;
+  font-family: sans-serif;
+  width: 100%;
+  /* background-image: url("https://us.123rf.com/450wm/toeytoey/toeytoey1706/toeytoey170600331/80810777-sfondo-natura-nuvola-scura-.jpg?ver=6");
+      background-size: cover; */
+}
+
+.box {
+  margin-top: 6%;
+  height: 570px;
+  background: #000;
+  color: #fff;
+  top: 15%;
+  box-sizing: border-box;
+  padding: 20px 10px;
+  opacity: 90%;
+  float: right;
+  border-radius: 25px;
+  border: 3px solid white;
+  }
+
+.dep {
+  margin-top: 25%;
+  opacity: 60%;
+  padding: 0;
+}
+
+.header-border {
+  background-color: red;
+  top: 55px;
+  height: 7px;
+  width: 100%;
+}
+
+.result-area {
+  width: 310px;
+  height: 570px;
+  box-sizing: border-box;
+  padding: 20px 10px;
+  float: right;
+}
+
+.result-area #area {
+  border: 3px solid black;
+}
+
+@media (min-width: 992px) {
+  .box {
+    margin-top: 6%;
+    margin-right: 80px;
+    width: 400px;
+    height: 570px;
+    background: #000;
+    color: #fff;
+    top: 15%;
+    position: static;
+    box-sizing: border-box;
+    padding: 20px 10px;
+    opacity: 90%;
+    float: right;
+    border-radius: 25px;
+    border: 3px solid white;
+  }
+  .dep {
+    margin-top: 6%;
+    margin-left: 3%;
+    float: left;
+    opacity: 80%;
+  }
+  .header-border {
+    background-color: red;
+    top: 55px;
+    height: 7px;
+    width: 100%;
+  }
+
+  .result-area {
+    margin-top: 6%;
+    margin-right: 80px;
+    width: 400px;
+    height: 570px;
+    top: 15%;
+    position: static;
+    box-sizing: border-box;
+    padding: 20px 10px;
+    float: right;
+  }
+  .result-area #area {
+    border: 3px solid black;
+  }
+}
+
+h1 {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.box input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 38px;
+  width: 80%;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 5%;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.box input[type="submit"] {
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 180px;
+  background: #fb2525;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  border: 3px solid white;
+  font-weight: bold;
+}
+
+.box input[type="submit"]:hover {
+  cursor: pointer;
+  background: green;
+  color: #fff;
+}
+
+  </style>
+  <script>
+    function startDictation() {
+      if (window.hasOwnProperty("webkitSpeechRecognition")) {
+        var recognition = new webkitSpeechRecognition();
+
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        recognition.lang = "en-US";
+        recognition.start();
+
+        recognition.onresult = function (e) {
+          document.getElementById("dtext").value = e.results[0][0].transcript;
+          recognition.stop();
+          document.getElementById("form").submit();
+        };
+
+        recognition.onerror = function (e) {
+          recognition.stop();
+        };
+      }
+    }
+
+    function toggleMenu() {
+      const navbar = document.getElementById("Navbar");
+      if (navbar.classList.contains("show")) {
+        navbar.classList.remove("show");
+      } else {
+        navbar.classList.add("show");
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color: black">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><b>Depression Detection</b></a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" onclick="toggleMenu()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="Navbar">
+        <ul class="ml-auto navbar-nav">
+          &nbsp;
+          <li class="nav-item">
+            <a class="nav-link" href="/select"><span class="fa fa-bars fa-lg"></span> Select</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/predict"><span class="fa fa-file-text fa-lg"></span> Text</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout"><span class="fa fa-sign-out fa-lg"></span> LogOut
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="fixed-top header-border"></div>
+    <div class="px-3 col-12">
+      <div class="dep col-lg-6 col-sm-12 col-md-12">
+        <!-- <img src="https://github.com/SarathMajji1699/ImagesUpload/blob/main/dep.png?raw=true" width="100%" height="100%"
+          style="border-radius: 20px; border: 2px solid white" /> -->
+          <img src="../static/images/dep.png" width="100%" height="100%"
+            style="border-radius: 20px; border: 2px solid white; margin-top: 5%;" />
+      </div>
+      <div class="box col-lg-4 col-sm-12 col-md-12 ml-auto" style="bottom: 6px; border: 5px solid red;">
+        <center>
+          <br><br>
+          <h1 style="text-decoration-line: underline;text-decoration-color: red;"> Depression &nbsp; Detection
+          </h1>
+          <br><br><br>
+
+          <!-- Main Input For Receiving Query to our ML -->
+          <form action="{{ url_for('predict')}}" method="post">
+            {% if text%}
+            <input type="text" id="dtext" name="dtext" placeholder="{{text}}" x-webkit-speech required="required" size="50" />
+            {% else %}
+            <input type="text" id="dtext" name="dtext" placeholder="Enter Your Text Here" x-webkit-speech required="required" size="50" />
+            {%endif%}
+            <img onclick="startDictation();this.src='../static/images/microphone.gif';" style="
+                width: 15%;
+                height: 15%;
+                float: right;
+                display: inline-block;" id="imgClickAndChange" class="mt-3" src="../static/images/audio.jpg " />
+
+            <br><br><br><br><br>
+
+            <input type="submit" class="btn btn-primary btn-block btn-large" value="Analyze" />
+          </form>
+
+          <br>
+          <br>
+          {% if index == 0 %}
+          <h1 style="color: #66ff66; font-weight: bold">{{prediction_text}}</h1>
+          {% elif index == 1 %}
+          <h1 style="color: red; font-weight: bold">{{prediction_text}}</h1>
+          {%endif%}
+        </center>
+      </div>
+    </div>
+    <br><br><br><br>
+  </div>
+</body>
+
+</html>

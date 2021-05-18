@@ -1,0 +1,145 @@
+<html>
+
+<head>
+  <title>Depression Detection</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../static/css/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/font-awesome/css/font-awesome.css">
+  <!-- <link href="../static/css/style.css" rel="stylesheet" /> -->
+  <style>
+  #bg {
+    display: inline-block;
+    /* margin-left: 50px; */
+    width: 90%;
+    /* height: 50%; */
+    border: 3px solid black;
+    /* float: left; */
+  }
+  #area {
+    display: inline-block;
+    /* margin-left: 50px; */
+    width: 90%;
+    height: 30%;
+    border: 3px solid black;
+    /* float: left; */
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  .result {
+    /* margin-top: 15%; */
+    margin-bottom: 10%;
+    text-align: center;
+  }
+    .header-border {
+      background-color: red;
+      top: 55px;
+      height: 7px;
+      width: 100%;
+    }
+
+    @media (min-width: 992px) {
+      .header-border {
+        background-color: red;
+        top: 55px;
+        height: 7px;
+        width: 100%;
+      }
+      #bg {
+        display: inline-block;
+        margin-left: 50px;
+        width: 45%;
+        height: 100%;
+        border: 3px solid black;
+        float: left;
+        margin-bottom: 5%;
+      }
+      #area {
+        display: inline-block;
+        margin-left: 50px;
+        width: 45%;
+        height: 100%;
+        border: 3px solid black;
+        float: left;
+        margin-top: 0%;
+        margin-bottom: 5%;
+      }
+      .result {
+        /* margin-top: 45%; */
+        margin-bottom: 10%;
+        text-align: center;
+      }
+
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const navbar = document.getElementById("Navbar");
+      if (navbar.classList.contains("show")) {
+        navbar.classList.remove("show");
+      } else {
+        navbar.classList.add("show");
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color: black">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><b>Depression Detection</b></a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" onclick="toggleMenu()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="Navbar">
+        <ul class="ml-auto navbar-nav">
+          &nbsp;
+          <li class="nav-item">
+            <a class="nav-link" href="/select"><span class="fa fa-bars fa-lg"></span> Select
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/image"><span class="fa fa-image fa-lg"></span> Image Upload</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout"><span class="fa fa-sign-out fa-lg"></span> LogOut</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+    <div class="fixed-top header-border"></div>
+    <center>
+    <div class="col-12">
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <h1 align="center">Welcome to Depression Detection Application</h1><br>
+        <div class="px-3 col-12">
+          <div class="dep col-lg-12 col-sm-12 col-md-12">
+            {% if file %}
+            <img id="bg" src="{{ url_for('static', filename='uploads/'+file) }}">
+            {% endif %}
+          </div>
+          <div class="result-area col-lg-12 col-sm-12 col-md-12">
+            <textarea id="area" name="area" rows="15" cols="30">
+            {{text}}
+          </textarea>
+          </div>
+        </div>
+    </div>
+      </center>
+  </div>  <br><br>
+  <div class="result" style="color: {{col}}"><h1> {{result}} </h1></div>
+</body>
+
+</html>

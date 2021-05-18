@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  padding: 0;
+  /* height: 100%; */
+  /* background-image: url("https://cdn.hipwallpaper.com/i/52/49/29nhJr.png"); */
+  /* background-image: url("https://c4.wallpaperflare.com/wallpaper/274/155/716/gray-abstract-textured-texture-wallpaper-thumb.jpg"); */
+  background-size: cover;
+  font-family: sans-serif;
+}
+
+header {
+  background: black;
+  color: white;
+  padding: 8px 20px 6px 40px;
+  height: 50px;
+}
+
+.homered {
+  background-color: red;
+  padding: 30px 10px 22px 10px;
+}
+
+.divider {
+  background-color: red;
+  height: 5px;
+}
+
+.homeblack:hover {
+  background-color: #a6ff4d;
+  color: blue;
+  padding: 30px 10px 21px 10px;
+}
+
+.loginbox h1 {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.loginbox p {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+.loginbox input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.loginbox input[type="text"],
+input[type="password"], input[type="email"] {
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+}
+.loginbox input[type="submit"] {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #fb2525;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+}
+.loginbox input[type="submit"]:hover {
+  cursor: pointer;
+  background: green;
+  color: #000;
+}
+.loginbox a {
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 20px;
+  color: darkgrey;
+}
+
+.loginbox a:hover {
+  color: #ffc107;
+}

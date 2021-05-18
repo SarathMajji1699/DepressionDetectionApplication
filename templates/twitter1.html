@@ -1,0 +1,138 @@
+<html>
+
+<head>
+  <title>Depression Detection</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../static/css/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/font-awesome/css/font-awesome.css">
+  <style>
+    body {
+      /* background-image: url("https://img.freepik.com/free-photo/dark-grunge-style-scratched-metal-surface_1048-12951.jpg?size=626&ext=jpg");
+      background-size: cover;
+      background-repeat: no-repeat; */
+      background-color: black;
+    }
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 22%;
+      width: 80%;
+
+    }
+
+    td,
+    th {
+      border: 3px solid #9900ff;
+      text-align: left;
+      padding: 8px;
+      color: white;
+    }
+
+    th {
+      text-align: center;
+      color: rgb(43, 161, 146);
+    }
+
+    h1 {
+      text-align: center;
+      font-family: arial, sans-serif;
+      margin-top: 5%;
+    }
+
+    .header-border {
+      background-color: red;
+      top: 55px;
+      height: 7px;
+      width: 100%;
+    }
+
+    @media (min-width: 992px) {
+      .header-border {
+        background-color: red;
+        top: 55px;
+        height: 7px;
+        width: 100%;
+      }
+      table {
+        margin-top: 8%;
+      }
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const navbar = document.getElementById("Navbar");
+      if (navbar.classList.contains("show")) {
+        navbar.classList.remove("show");
+      } else {
+        navbar.classList.add("show");
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color: black">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><b>Depression Detection</b></a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" onclick="toggleMenu()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="Navbar">
+        <ul class="ml-auto navbar-nav">
+          &nbsp;
+          <li class="nav-item">
+            <a class="nav-link" href="/select"><span class="fa fa-bars fa-lg"></span> Select</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/twitter"><span class="fa fa-twitter fa-lg"></span> Twitter User</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/logout"><span class="fa fa-sign-out fa-lg"></span> LogOut
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="fixed-top header-border"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>Tweets of {{name}}</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for value,predict in tweetslist.items()%}
+        <tr>
+          <td>{{value}}</td>
+          <td>{{predict}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table><br>
+    <h1 style="color: white;">The tweets are <span style="color: #99ff66">{{npercent}}</span> Percentage Normal and
+      <span style="color:red">{{dpercent}} </span>Percentage Depression
+    </h1>
+    <br><br>
+    {% if file %}
+    <div class="text-center">
+      <a href="static/results/{{file}}" class="btn btn-primary mt-3 btn-lg alert-link" role="button">DOWNLOAD ALL DATA
+        INTO CSV</a>
+    </div>
+    {% endif %}
+  </div>
+</body>
+
+</html>

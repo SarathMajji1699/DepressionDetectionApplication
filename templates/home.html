@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Depression Detection</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/font-awesome/css/font-awesome.css">
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- <link href="../static/css/style.css" rel="stylesheet" /> -->
+  <style>
+    .title-wrapper {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-weight: 200;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .content-wrapper {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      text-align: center;
+    }
+    .developers {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      margin-left: 25%;
+      text-align: left;
+    }
+
+    #myCarousel {
+      height: 300px;
+    }
+
+    /* .carousel-inner {
+      height: 290px;
+    } */
+
+    .carousel-image {
+      width: 100%;
+      height: 300px
+    }
+
+    .carousel-inner>.item>img{
+        height:290px !important;
+      }
+
+    /* .fixed-top {
+      position: fixed;
+    } */
+
+    @media (min-width: 992px) {
+      .title-wrapper {
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        font-weight: 200;
+        font-size: 50px;
+        text-align: center;
+      }
+
+      .nav-items-wrapper {
+        float: right;
+      }
+
+      .content-wrapper {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 30px;
+        text-align: center;
+      }
+      .developers {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 30px;
+        margin-left: 33%;
+        text-align: left;
+      }
+
+      #myCarousel {
+        height: 600px;
+      }
+
+      /* .carousel-inner {
+        height: 100%;
+      } */
+
+      .carousel-image {
+        width: 100%;
+        height: 590px
+      }
+      .carousel-inner>.item>img{
+        height:590px !important;
+      }
+
+      /* .fixed-top {
+        position: fixed;
+      } */
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const navbar = document.getElementById("Navbar");
+      if (navbar.classList.contains("show")) {
+        navbar.classList.remove("show");
+      } else {
+        navbar.classList.add("show");
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color: black">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/"><b>Depression Detection</b></a>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar"  onclick="toggleMenu()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="Navbar">
+      <ul class="ml-auto navbar-nav nav-items-wrapper">
+        &nbsp;
+        <li class="nav-item active">
+          <a class="nav-link" href="/"><span class="fa fa-home fa-lg"></span> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/aboutus"><span class="fa fa-info fa-lg"></span> About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/userlogin"><span class="fa fa-address-card fa-lg"></span>  Login
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register"><span class="fa fa-address-card fa-lg"></span>  Register
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="fixed-top" style="background-color: red; top:55px; height: 7px; width: 100%; position: absolute;"></div>
+  <!-- <div class="slideshow-container" style="float: left; margin-left: 60px; margin-top: 120px;"> -->
+  <!-- <img src='https://cdn.vox-cdn.com/thumbor/gOwgl6gwIUqpPtBqMPRwSsO5b10=/0x0:1200x700/920x613/filters:focal(504x254:696x446):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/58503673/Untitled.0.jpg' width="85%" height="100%"/> -->
+  <div class="container-fluid" style="margin-top:2%">
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <center>
+          <div id="myCarousel" class="carousel slide" data-ride="carousel"
+            style="border: 5px solid red; background-color: black;">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+              <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+
+              <div class="item active">
+                <img src="../static/images/logo.png" style="width:80%; height: 600px;">
+                <div class="carousel-caption">
+                </div>
+              </div>
+
+              <div class="item">
+                <img src="../static/images/depression.jpg" alt="Depression" style="width:80%; height: 600px;">
+                <div class="carousel-caption">
+                </div>
+              </div>
+
+              <div class="item">
+                <img src="../static/images/depression2.jpg" alt="Depression" style="width:80%; height: 600px;">
+                <div class="carousel-caption">
+                </div>
+              </div>
+
+              <div class="item">
+                <img src="../static/images/depressed%20woman2.jpg" alt="Depression" style="width:80%; height: 600px;">
+                <div class="carousel-caption">
+                </div>
+              </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev" style="background-color: black;">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next" style="background-color: black;">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </center>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div id="text" style="margin-top: 70px;">
+
+          <h1 class="title-wrapper">
+            Welcome to <br>Depression Detection<br>Application </h1><br>
+          <p class="content-wrapper"><br>Project by B6</p>
+          <p class="developers">&#8680;Sarath Majji<br>&#8680;Yaswanth Kota<br>&#8680;Uday Sai<br>&#8680;Harsha</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+
+<head>
+  <meta charset="UTF-8">
+  <title>Depression Detection</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../static/css/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/font-awesome/css/font-awesome.css">
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+  <!-- <link href="../static/css/style.css" rel="stylesheet"> -->
+
+  <style>
+    table.dataframe,
+    .dataframe th,
+    .dataframe td {
+      border: none;
+      border-bottom: 1px solid #C8C8C8;
+      border-collapse: collapse;
+      text-align: left;
+      padding: 10px;
+      margin-bottom: 40px;
+      font-size: 0.9em;
+    }
+
+    .header-border {
+      background-color: red;
+      top: 55px;
+      height: 7px;
+      width: 100%;
+    }
+    .input-group-prepend {
+      display: none;
+    }
+    .custom-file-label {
+      text-align: left;
+    }
+    .card-title {
+      margin-top: 25px;
+    }
+
+    @media (min-width: 992px) {
+      .header-border {
+        background-color: red;
+        top: 55px;
+        height: 7px;
+        width: 100%;
+      }
+      .input-group-prepend {
+        display: inline-block;
+      }
+      .custom-file-label {
+        text-align: center;
+      }
+    .card-title {
+      margin-top: 25px;
+    }
+  }
+  </style>
+
+
+  <script>
+    function toggleMenu() {
+      const navbar = document.getElementById("Navbar");
+      if (navbar.classList.contains("show")) {
+        navbar.classList.remove("show");
+      } else {
+        navbar.classList.add("show");
+      }
+    }
+  </script>
+
+  <!-- <script type="application/javascript">
+    $(document).on("change", ".custom-file-input", function (event) {
+      $(this).text(".custom-file-label").html(event.target.files[0].name);
+    })
+  </script> -->
+  <script>
+    var loadFile = function (event) {
+      var fname = event.target.files[0].name
+      document.getElementById("custom-file-label").innerHTML = fname;
+    };
+  </script>
+</head>
+
+<body style="background-image: url('https://cdn.hipwallpaper.com/i/96/58/laE6Z7.jpg')">
+  <div class="container-fluid">
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color: black">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><b>Depression Detection</b></a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" onclick="toggleMenu()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="Navbar">
+        <ul class="ml-auto navbar-nav">
+          &nbsp;
+          <li class="nav-item">
+            <a class="nav-link" href="/select"><span class="fa fa-bars fa-lg"></span> Select</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><span class="fa fa-upload fa-lg"></span> Upload</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout"><span class="fa fa-sign-out fa-lg"></span> LogOut
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="fixed-top header-border"></div>
+
+    <!-- <div class="dep" style="margin-top: 9%; margin-left: 3%; float: left; opacity: 60%;">
+     <img src="https://github.com/SarathMajji1699/ImagesUpload/blob/main/dep.png?raw=true" width="800px" height="550px" style="border-radius: 20px; border: 2px solid white;"/>
+   </div> -->
+    <center>
+      <div class="container justify-content-center" style="margin-top: 7%;">
+        <div class="card text-center mt-5 mb-5">
+          <div class="card-header bg-primary text-white">
+            <h4 class="card-title bold">Depression Detection for Bulk data</h4>
+            <p class="font-weight-normal">Please Upload valid information to predict dipression state.</p>
+          </div><br><br>
+          <div class="card-body center">
+            <p class="font-weight-normal"> <img
+                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUaA9DedbZjS8D6DxKJFqKjrQqF_AJ8Dh7gg&usqp=CAU'
+                width='25px' height='25px'> The name of the header that contains tweets must be tweet </p><br>
+            <form action="{{ url_for('file_predict')}}" method="post" enctype="multipart/form-data">
+              <div class="input-group mb-3 mt-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">CSV</span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" name="file" class="custom-file-input" id="custom-file-input"  accept=".csv " onchange="loadFile(event)" required>
+                  <label  class="custom-file-label" id="custom-file-label" for="customFile">Choose file</label>
+                </div>
+              </div><br><br><br>
+              <div class="alert alert-secondary" role="alert">
+                Please upload file in this <a href="/static/senti_format.csv" class="alert-link">example file link</a>
+                format.
+              </div><br><br>
+              <button type="submit" class="btn btn-primary btn-lg">Analyze Now</button>
+
+            </form>
+
+            <br>
+            <!-- {% if index == 0 %}
+    <h1 style="color: green;"> {{prediction_text}} </h1>
+    {% elif index == 1 %}
+     <h1 style="color: red;"> {{prediction_text}} </h1>
+    {%endif%} -->
+            {% if tables%}
+            <div class="center mt-3">
+              <h5 class="mt-4 p-2 border rounded bg-success text-white">Your Data Result is Followings</h5>
+              {% for table in tables %}
+              {{ table|safe }}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {%endif%}
+
+        {% if file %}
+        <div class="text-center">
+          <a href="static/results/{{file}}" class="btn btn-primary mt-3 btn-lg alert-link" role="button">DOWNLOAD ALL
+            DATA INTO CSV</a>
+          {% endif %}
+        </div>
+      </div>
+      <br><br>
+    </center>
+  </div>
+</body>
+
+</html>

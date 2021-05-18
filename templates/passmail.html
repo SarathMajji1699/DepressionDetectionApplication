@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Email verification</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../static/css/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/lustyle.css">
+  <style>
+  body {
+    /* background-image: url("../static/images/lmback.png"); */
+    /* height: 100vh; */
+  }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .loginbox {
+      width: 300px;
+      background: #000;
+      color: #fff;
+      margin: 30% auto;
+      box-sizing: border-box;
+      border-radius: 10px;
+      padding: 70px 30px;
+      opacity: 80%;
+      border: 5px solid red;
+    }
+
+    .header-border {
+      background-color: red;
+      top: 55px;
+      height: 7px;
+      width: 100%;
+    }
+
+    .display-none {
+      display: none;
+    }
+
+    #Navbar ul {
+      margin-top: 20px;
+    }
+
+    @media (min-width: 992px) {
+      body {
+        /* background-image: url("../static/images/lback.png"); */
+      }
+      .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 2px solid white;
+      }
+
+      .header-border {
+        background-color: red;
+        top: 55px;
+        height: 7px;
+        width: 100%;
+      }
+
+      .display-none {
+        display: block;
+      }
+
+      .loginbox {
+        width: 360px;
+        background: #000;
+        color: #fff;
+        margin-top: 20%;
+        margin-left: 20%;
+        box-sizing: border-box;
+        border-radius: 10px;
+        padding: 70px 30px;
+        opacity: 80%;
+        border: 5px solid red;
+      }
+
+      #Navbar ul {
+        margin-top: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color: black">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><b>Depression Detection</b></a>
+      </div>
+    </nav>
+    <div class="fixed-top header-border"></div>
+    <div class="row">
+      <div class="col-lg-7 col-sm-12">
+        <div class="aimg display-none" style="margin-top: 10%;margin-left: 7%;">
+          <img src="../static/images/ilogin.png" width="80%"
+            height="85%" />
+        </div>
+      </div>
+      <div class="col-lg-5 col-sm-12">
+        <div class="loginbox" style="margin-top: 25%;">
+          <br>
+          <h1>Email Verification for Password Reset</h1><br><br><br>
+          <form action="{{ url_for('passmail') }}" method="post">
+            <p>
+            <h3>Email</h3>
+            </p> <br>
+            <input type="email" name="email" placeholder="Enter your email id" required /><br><br><br><br>
+            <input type="submit" name="verify" value="Verify"><br><br>
+            <h3 style="text-align: center;"> {{info}} </h3>
+          </form>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

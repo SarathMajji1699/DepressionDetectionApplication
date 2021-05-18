@@ -1,0 +1,226 @@
+<html>
+
+<head>
+  <title>Depression Detection</title>
+  <!-- <meta http-equiv="refresh" content="10"> -->
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Hind:300" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="../static/css/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../static/css/font-awesome/css/font-awesome.css" />
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/select.css') }}" />
+  <link href="../static/css/select.css" rel="stylesheet" /> -->
+  <style>
+    #users {
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+    }
+
+    #users th {
+      border: 1px solid #ddd;
+      background-color: #4CAF50;
+
+      padding: 8px;
+    }
+    #users th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+      background-color: #ff4d4d;
+      color: white;
+    }
+
+    #users th:hover {
+      background-color: black;
+    }
+    #user {
+      background-color: #4CAF50;
+      border-radius: 25px;
+      margin-bottom: 2%;
+      margin-top: 1%;
+    }
+    #user:hover {
+      background-color: blanchedalmond;
+    }
+    #admin {
+      background-color: yellow;
+      border-radius: 25px;
+      margin-bottom: 2%;
+      margin-top: 1%;
+    }
+    #admin:hover {
+      background-color: red;
+    }
+    input[type="text"] {
+      border: none;
+      border-bottom: 1px solid #000;
+      background: transparent;
+      outline: none;
+      /* height: 50px; */
+      width: 55%;
+      /* color: #fff; */
+      font-size: 20px;
+      /* margin-top: 5%; */
+      /* display: inline-block; */
+      /* margin-left: 10px; */
+    }
+
+    input[type="submit"] {
+      border: none;
+      outline: none;
+      /* height: 50px; */
+      width: 20%;
+      background: #fb2525;
+      color: #fff;
+      font-size: 18px;
+      border-radius: 20px;
+      border: 1px solid white;
+      font-weight: bold;
+    }
+
+    input[type="submit"]:hover {
+      cursor: pointer;
+      background: green;
+      color: #fff;
+    }
+
+
+
+    .header-border {
+      background-color: red;
+      top: 55px;
+      height: 7px;
+      width: 100%;
+    }
+
+    #Navbar ul {
+      margin-top: 20px;
+    }
+
+    .header-title {
+      font-size: 20px;
+    }
+
+    @media (min-width: 992px) {
+      .header-border {
+        background-color: red;
+        top: 55px;
+        height: 7px;
+        width: 100%;
+      }
+
+      #Navbar ul {
+        margin-top: 0;
+      }
+
+      .header-title {
+        font-size: 35px;
+      }
+
+      .table {
+        width: 80%;
+        margin: 0 auto;
+      }
+      input[type="submit"] {
+        width: 10%;
+      }
+      input[type="text"] {
+        width: 63%;
+      }
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const navbar = document.getElementById("Navbar");
+      if (navbar.classList.contains("show")) {
+        navbar.classList.remove("show");
+      } else {
+        navbar.classList.add("show");
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color: black">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><b>Depression Detection</b></a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" onclick="toggleMenu()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="Navbar">
+        <ul class="ml-auto navbar-nav">
+          &nbsp;
+          <!---<li class="nav-item">
+            <a class="nav-link" href="/"><span class="fa fa-home fa-lg"></span> Home</a>
+          </li>--->
+          <li class="nav-item">
+            <a class="nav-link" href="/select"><span class="fa fa-bars fa-lg"></span> Select
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/feedback"><span class="fa fa-comments-o fa-lg"></span> Chat
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout"><span class="fa fa-sign-out fa-lg"></span> LogOut</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="fixed-top header-border"></div>
+    <div class="text-center">
+      <h1 class="header-title">Welcome to Depression Detection Application, <span> {{user}} </span> ! </h1>
+      <!-- <h1 class="header-title" style="width:300px;height:50px; display: inline;" onclick="display()"> {{user}} !</h1> -->
+    </div>
+    <br><br>
+    <div>
+      <div class="table-responsive-sm">
+        <table class="table" id="users">
+          <th colspan="2"> <b>Chat with Admin</b> </th>
+          <!-- <th> <b>*******</b> </th> -->
+          <!-- <th> <b>From</b> </th>
+          <th><b>To</b> </th>
+          <th><b>Message</b> </th> -->
+          {% for row in message %}
+          <tr>
+            <!-- <td>{{row}}</td>
+            <td>{{message[row][0]}}</td>
+            <td>{{message[row][1]}}</td> -->
+            {% if message[row][0] == 'Sarath Majji'  %}
+            <td id="admin" colspan="2" style="float: left; ">{{message[row][0]}}: {{message[row][2]}}</td>
+            {% elif message[row][0] != 'Sarath Majji'  %}
+            <td id="user" colspan="2" style="float: right; ">{{message[row][0]}}: {{message[row][2]}}</td>
+            {%endif%}
+          </tr>
+          {% endfor %}
+        </table><br><br><center>
+          <form action="{{ url_for('feedmsg')}}" method="post">
+        <input type="text" id="dtext" name="dtext" placeholder="Enter Text Here" style="margin-left: 7%;" />
+        <input type="submit" class="btn btn-primary" value="Send" onClick="refresh" style="float: right; margin-right: 12%;" />
+      </form>
+        </center>
+      </div>
+    </div>
+  </div><br><br><br><br><br>
+  <script>
+      function scrollToBottom() {
+          window.scrollTo(0, document.body.scrollHeight);
+      }
+      history.scrollRestoration = "manual";
+      window.onload = scrollToBottom;
+  </script>
+  <script>
+  function refresh() {
+      window.reload(window.location.href='{{ url_for( 'afeeds') }}');
+  }
+  </script>
+</body>
+</html>
